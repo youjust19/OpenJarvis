@@ -1,6 +1,6 @@
 # Render Blueprint for the OpenJarvis FastAPI server.
 # Deploys src/openjarvis/server/app.py via deploy/docker/Dockerfile.
-# Apply at: https://dashboard.render.com/blueprint/new?repo=https://github.com/open-jarvis/OpenJarvis
+# Apply at: https://dashboard.render.com/blueprint/new?repo=https://github.com/youjust19/OpenJarvis
 services:
   - type: web
     name: openjarvis-server
@@ -15,7 +15,7 @@ services:
     # Pin a cloud model as well as the engine. The repository's default model
     # is local-only, so omitting this would make `jarvis serve` reject the
     # otherwise healthy cloud engine during startup.
-    dockerCommand: serve --host 0.0.0.0 --port 10000 --engine cloud --model gpt-4o-mini
+    dockerCommand: serve --host 0.0.0.0 --port 10000 --engine cloud --model gemini-2.5-flash
     healthCheckPath: /health
     autoDeploy: true
     envVars:
@@ -37,7 +37,7 @@ services:
       # are operator-supplied secrets; using one provider here keeps the
       # one-click contract deterministic instead of incorrectly requiring a
       # key for every supported cloud provider.
-      - key: OPENAI_API_KEY
+      - key: GEMINI_API_KEY
         sync: false
 
       # The free service filesystem is ephemeral. OpenJarvis state under this
